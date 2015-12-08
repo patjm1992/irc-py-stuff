@@ -26,24 +26,29 @@ class IRC:
     def PRIVMSG(self, target, msg):
         cmd = ("PRIVMSG %s :%s\r\n" % (target, msg)).encode()
         self.command(cmd)
+
+    def TOPIC(self, channel, topic):
+        cmd = ("TOPIC %s :%s\r\n" % (channel, topic)).encode()
+        self.command(cmd)
+
+    def QUIT(self):
+        """ TO-DO """
         
-    def send(self, chan, msg):
-        self.irc.PRIVMSG(msg)
- 
     def connect(self, server, channel, nick, user, real_name, host):
-        print ("Connecting to:" +server)
+        print ("Connecting to: " + server)
         self.irc.connect((server, 6667))                               
         self.USER(user, host, server, real_name)
         self.NICK(nick)
         self.JOIN(channel)
 
     def get_text(self):
-        text = self.irc.recv(2040)  #receive the text
+        data = self.irc.recv(2040)
 
-        # Keep from 'pinging out' -- stay connected
-        if text.startswith(('PING').encode()) != -1:
+        if data.startswith(('PING').encode()) != -1:
             self.irc.send(('PONG ' + ':arch-plex\r\n').encode())
 
+        text = data.decode()
+            
         return text
 
     
