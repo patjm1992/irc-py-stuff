@@ -35,7 +35,8 @@ class IRC:
         """ TO-DO """
         
     def connect(self, server, channel, nick, user, real_name, host):
-        print ("Connecting to: " + server)
+        print ("Connecting to: %s..." % server)
+        self.host = host
         self.irc.connect((server, 6667))                               
         self.USER(user, host, server, real_name)
         self.NICK(nick)
@@ -45,7 +46,8 @@ class IRC:
         data = self.irc.recv(2040)
 
         if data.startswith(('PING').encode()) != -1:
-            self.irc.send(('PONG ' + ':arch-plex\r\n').encode())
+#            self.irc.send(('PONG ' + ':arch-plex\r\n' % ).encode())
+            self.irc.send(('PONG :%s\r\n' % self.host).encode())
 
         text = data.decode()
             
