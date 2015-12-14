@@ -46,7 +46,6 @@ class IRC:
         data = self.irc.recv(2040)
 
         if data.startswith(('PING').encode()) != -1:
-#            self.irc.send(('PONG ' + ':arch-plex\r\n' % ).encode())
             self.irc.send(('PONG :%s\r\n' % self.host).encode())
 
         text = data.decode()
