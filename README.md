@@ -1,3 +1,3 @@
 # irc-py-stuff
 
-There's nothing wrong with killing a fish.
+Nothing new or interesting to see here. Just an IRC bot.
