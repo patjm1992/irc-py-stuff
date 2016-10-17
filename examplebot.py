@@ -22,7 +22,7 @@ while True:
 
     print (text) # See what the server is returning 
 
-    ''' get.msgs() parses server text for specifically for messages '''
+    ''' get.msgs() parses server text specifically for messages '''
     if 'Hi' in bot.get_msgs(text):
         time.sleep(1)
         bot.say("Hello.")
