@@ -15,8 +15,8 @@ class Bot:
         text = self.irc.get_text()
         return text
         
-    def say(self, chan, something):
-        self.irc.PRIVMSG(chan, something)
+    def say(self, something):
+        self.irc.PRIVMSG(self.chan, something)
 
     def get_msgs(self, text):
         msg = ""
